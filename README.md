@@ -1,2 +1,2 @@
 # Familist
-our project- manage famiy list
+our project- manage family list
