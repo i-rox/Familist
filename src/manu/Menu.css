@@ -1,0 +1,9 @@
+.menu{
+    position: absolute;
+    width: 200px;
+    height: 100%;
+    background:skyblue;
+    top:0px;
+    opacity: 0.5;
+
+}

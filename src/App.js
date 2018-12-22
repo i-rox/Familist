@@ -1,32 +1,36 @@
+import Button from '@material-ui/core/Button';
+
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Home from './Home';
+import About from './About';
+import Menu from './manu/Menu';
+import Todo from './todo/Todo';
+import Login from './login/Login';
+import ResetPassword from './login/ResetPassword';
+import NewTask from './newTask/NewTask';
+import NewGroup from './login/NewGroup';
+import ManageGroup from './login/ManageGroup';
 
 class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { value: 'test' };
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-
-    handleSubmit(event) {
-        alert('A name was submitted: ' + this.state.value);
-        event.preventDefault();
-        window.open('./components/App2',"_self");
-    }
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Welcome to FamiltList
-          </p>
-          <label>your name: <input type="text" name="name" /></label>
-                <label>your password: <input type="text" name="pass" /></label>
-                <input type="submit" value="Next" onClick={this.handleSubmit} />
-        </header>
-      </div>
+      <Router>
+        <main>
+          <Menu />
+       
+          <Route path="/Home" component={Home} />
+          <Route path="/Todo" component={Todo} />
+          <Route path="/About" component={About} />
+          <Route path="/NewTask" component={NewTask} />
+          <Route path="/Login" component={Login} />
+          <Route path="/ResetPassword" component={ResetPassword} /> 
+          <Route path="/NewGroup" component={NewGroup} /> 
+          <Route path="/ManageGroup" component={ManageGroup} />
+        </main>
+      </Router>
+     
     );
   }
 }
