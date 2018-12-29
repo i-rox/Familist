@@ -31,7 +31,7 @@ class ManageGroup extends Component {
       <div className="App-header">     
               
           <h3>Manage Group</h3>
-          <a href="#">add users</a>
+          <a href="/Test">add users</a>
         
       </div>       
     );

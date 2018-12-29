@@ -4,10 +4,14 @@ import MyGroups from './MyGroups';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Input extends React.Component {
+  signIn(e)
+  {
+    alert(e.target.value);
+  }
   render() {
     return <div className='Input'>
-              <input type={ this.props.type } name={ this.props.name } placeholder={ this.props.placeholder } required autocomplete='false'/>
-              <label for={ this.props.name } ></label>
+              <input onBlur={(e)=>this.signIn(e)} type={ this.props.type } name={ this.props.name } placeholder={ this.props.placeholder } required autocomplete='false'/>
+              <label for={ this.props.name }  ></label>
            </div>
   }
 
@@ -17,13 +21,16 @@ class Login extends Component {
   constructor(props) {
     super(props); 
     this.state = {
-      showPopup: false
+      showPopup: false,
+      userName:'',
+      password:''
     };
   }
 
   togglePopup() {
     this.setState({
-      showPopup: !this.state.showPopup
+      showPopup: !this.state.showPopup,
+     
     });
   }
 
@@ -41,6 +48,8 @@ class Login extends Component {
             <Input type='text' name='username' placeholder='username' />
             <Input type='password' name='password' placeholder='password' />
             <button onClick={this.togglePopup.bind(this)}>Sign In</button>
+            <button onClick={(e)=>this.signIn(e)}>Sign Up</button>
+            
           </form>
           <a href="./ResetPassword">forgot password?</a>
         </div>

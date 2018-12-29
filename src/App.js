@@ -12,6 +12,7 @@ import ResetPassword from './login/ResetPassword';
 import NewTask from './newTask/NewTask';
 import NewGroup from './login/NewGroup';
 import ManageGroup from './login/ManageGroup';
+import Test from './login/Test';
 
 class App extends Component {
   render() {
@@ -27,6 +28,7 @@ class App extends Component {
           <Route path="/Login" component={Login} />
           <Route path="/ResetPassword" component={ResetPassword} /> 
           <Route path="/NewGroup" component={NewGroup} /> 
+          <Route path="/Test" component={Test} /> 
           <Route path="/ManageGroup" component={ManageGroup} />
         </main>
       </Router>
