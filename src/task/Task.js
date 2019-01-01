@@ -10,6 +10,9 @@ class Task extends Component {
       <button className="isDone" onClick={this.props.myClick}>
        isdone
       </button>
+      <button className="EditTask" onClick={this.props.myEditClick}>
+      Edit
+      </button>
       </div>
     );
   }
