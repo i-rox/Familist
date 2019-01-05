@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './NewGroup.css';
+//import './NewGroup.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Input extends React.Component {

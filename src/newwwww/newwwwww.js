@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
-import './NewTask.css';
+import './OnLeave.css';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
-class NewTask extends Component {
-  //constructor(props){
-    //super(props);
-    //this.state={
-     // arr2:{name:'',_id:''},
-   // }
- // }
-  //<button onClick={this.prepareNewTask()}>create</button>
+class OnLeave extends Component {
+  constructor(props){
+    super(props);
+    this.state={
+      arr2:{name:'',_id:''},
+    }
+  }
+  prepareNewTask(){
+   let task={name:'kkk',id:'99'}
+//this.state.arr2.name="colo"
+this.state.arr2=task
+this.setState(this.state)
+
+ this.state.CreateTask(this.state.arr2)} 
+  
   //onClick={()=>{this.CreateTask(this.state.arr2)} }
   render() {
     return (
@@ -26,11 +33,10 @@ class NewTask extends Component {
       <div className="newTask2"></div>
       <div className="newTask2"></div>
       <div></div>
-  <button >create</button>
-      
+      <button onClick={this.prepareNewTask()}>create</button>
      </div>
     );
   }
 }
 
-export default NewTask;
+export default OnLeave;
