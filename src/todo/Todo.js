@@ -1,5 +1,14 @@
 import React, { Component } from 'react';
 import './Todo.css';
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Checkbox from '@material-ui/core/Checkbox';
+import IconButton from '@material-ui/core/IconButton';
+import CommentIcon from '@material-ui/icons/Comment';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Task from '../task/Task';
 import NewTask from '../newTask/NewTask'
@@ -83,27 +92,26 @@ class Todo extends Component {
     debugger
     if (this.state.arr[key]) {
       return (
-        <Task vggalue={this.state.arr[key]} myClick={() => { this.markTaskAsDone(this.state.arr[key]._id) }} />
+        <Task value={this.state.arr[key]} myClick={() => { this.markTaskAsDone(this.state.arr[key]._id) }} />
       );
     }
     return null;
   }
   render() {
+    const { classes } = this.props;
     return (
-      <div className="wrapp1">
-
-        {this.renderTask(0)}
-        {this.renderTask(1)}
-        {this.renderTask(2)}
-        <button onClick={this.createNewTask}>new</button>
-        <a href="./NewTask">new task</a>
-        <About parentMethod={this.someMethod}></About>
-
+      <div className="App-header">
+        <h3>TODO list</h3>
+        <List >
+          {this.renderTask(0)}
+          {this.renderTask(1)}
+          {this.renderTask(2)}
+          <button onClick={this.createNewTask}>new</button>
+          <a href="./NewTask">new task</a>          
+        </List>
       </div>
     );
   }
-
 }
-
 
 export default Todo;

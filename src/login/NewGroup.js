@@ -29,7 +29,17 @@ class NewGroup extends Component {
   }
 
   signIn() {
+    let groups=[];
+    if(localStorage.getItem('groups')!=null)
+    {
+      groups=JSON.parse(localStorage.getItem('groups'));
+    }   
+    let newgroup={username:localStorage.getItem('username'), pass:localStorage.getItem('password'),name:'group'};
+    groups.push(newgroup);
+
+    localStorage.setItem('groups', JSON.stringify(groups));
     alert("check details&/n enter to all groups");
+    this.setState({showPopup:false})
   }
   render() {
     return (      
@@ -37,7 +47,7 @@ class NewGroup extends Component {
         <div className='Login'>       
           <h3>New Group</h3>
           <form onSubmit={this.signIn}>
-            <Input type='text' name='managername' placeholder='manager name' />
+            <Input type='text' name='name' placeholder='group name' />
             <Input type='email' name='email' placeholder='email' />
             <Input type='password' name='password' placeholder='password' />
             <button>Create</button>
