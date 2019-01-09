@@ -1,106 +1,82 @@
 import React, { Component } from 'react';
-import MyGroups from './MyGroups';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import './Login.css';
+import Avatar from '@material-ui/core/Avatar';
+import Button from '@material-ui/core/Button';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import FormControl from '@material-ui/core/FormControl';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Input from '@material-ui/core/Input';
+import InputLabel from '@material-ui/core/InputLabel';
+import LockIcon from '@material-ui/icons/LockOutlined';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import Service from '../service/Service'
 
-class Input extends React.Component {
-   
-  constructor(props)
-  {
-    super(props);
+const service = new Service();
 
-    this.state = {
-        fields: {},
-        errors: {}
-    }
-  }
-  handleChange(field, e)
-  {         
-    localStorage.setItem(field,e.target.value)
-  }
-  
-  render() {
-    return <div className='Input'>
-              <input name={ this.props.name } onChange={this.handleChange.bind(this,  this.props.name)} type={ this.props.type }  placeholder={ this.props.placeholder } required autocomplete='false'/>
-              <label for={ this.props.name }  ></label>
-           </div>
-  }
-
-}
 class Login extends Component {
-    
+
   constructor(props) {
-    super(props); 
+    super(props)
     this.state = {
-      showPopup: false,
-      users:{}
-    };
-  }
-
-  togglePopup() {
-    this.setState({
-      showPopup: !this.state.showPopup,
-     
-    });
-  }
-
-  signIn(e) { 
-    if(localStorage.getItem('users')==null)
-    {
-      alert("any user exist");
-      return;
-    }  
-    let users=JSON.parse(localStorage.getItem('users')); 
-    let user={username:localStorage.getItem('username'), pass:localStorage.getItem('password')};
-    for(let i=0;i<users.length;i++)
-    {
-      if(users[i].pass==user.pass&&users[i].username==user.username)
-      {
-        alert("this is the user!!!");
-        return;
-      }
+      username: '',
+      password:''
     }
-    alert("not exist:(");
-   
-    
-  }      
-   
-
-  
-  signUp()
-  {
-    let users=[];
-    if(localStorage.getItem('users')!=null)
-    {
-      users=JSON.parse(localStorage.getItem('users'));
-    }   
-    let newUser={username:localStorage.getItem('username'), pass:localStorage.getItem('password')};
-    users.push(newUser);
-
-    localStorage.setItem('users', JSON.stringify(users));
-    alert("check details&/n enter to all groups");
   }
- 
-  render() {
-    return (      
-      <div className="App-header">     
-        <div className='Login'>       
-          <h3>Sign In</h3>   
-           <a href="./SignUp">New to Familist? Sign up!</a>
-          <form >
-            <Input type='email' name='username' placeholder='username' />
-            <Input type='password' name='password' placeholder='password' />
-            <button onClick={(e)=>this.signIn(e)}>Sign In</button>
-            <button onClick={(e)=>this.signUp(e)}>Sign Up</button>
-            
-          </form>
-          <a href="./ResetPassword">forgot password?</a>
-        </div>
-        {this.state.showPopup ? 
-          <MyGroups></MyGroups>
-          : null
-        }
-      </div>       
-    );
+
+  handleSubmit(event){
+    let loginDetails = {};
+    loginDetails.username = this.state.username;
+    loginDetails.password = this.state.password;
+    if(service.signIn(loginDetails))
+    {
+      this.props.history.push('../MyGroups');
+    }  
+  }
+
+  handleChange = prop => event => {
+    this.setState({ [prop]: event.target.value });
+  };
+
+  render (){
+    return(
+    <main className='main'>
+      <CssBaseline />
+      <Paper className='paper'>
+        <Avatar className='avatar'>
+          <LockIcon />
+        </Avatar>
+        <Typography  component="h1" variant="h5">
+          Sign in
+        </Typography>
+        <form  onSubmit={this.handleSubmit.bind(this)} className='form'>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="email">Email Address</InputLabel>
+            <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange('username')}/>
+          </FormControl>
+          <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="password">Password</InputLabel>
+            <Input name="password" type="password" id="password" autoComplete="current-password"  onChange={this.handleChange('password')}/>
+          </FormControl>
+          <FormControlLabel
+            control={<Checkbox value="remember" color="primary" />}
+            label="Remember me"
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="primary"
+            className='submit'
+           
+          >
+            Sign in
+          </Button>
+        </form>
+      </Paper>
+    </main>
+  );
   }
 }
 
