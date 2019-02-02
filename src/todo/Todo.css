@@ -1,10 +1,8 @@
 h2{
   font-size: 200px;
 }
-.wrapp2{
-  border: green solid 4 px;
-  width: 100px;
-  height: 50px;
+.appBar{
+  /*background-color: dimgray;*/
 }
 
 .wrapp1{
@@ -12,4 +10,12 @@ h2{
   width: 203px;
   height: 300px;
   margin: auto;
+}
+.root{
+  width:100%;
+  max-Width:360;
+  /* backgroundColor: theme.palette.background.paper, */
+}
+.nested{
+  padding-Left:4;
 }

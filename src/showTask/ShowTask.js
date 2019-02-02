@@ -14,7 +14,8 @@ class ShowTask extends Component {
       showObj: ''
     }
   }
-  componentWillMount() {
+
+  /* componentWillMount() {
     debugger
     // alert({this.props.location.state.id});
     // this.setState({id1:this.props.location.state.id});
@@ -23,19 +24,19 @@ class ShowTask extends Component {
     //this.setState({ id1: JSON.parse(localStorage.getItem('IdForEdit')) });
     //this.setState({arr:)
     debugger
-  }
+  } */
   // {this.state.id1}
   backToList(){
     debugger
-    let path = '../todo/Todo';
-    this.props.history.push(path);   
+    this.props.history.goBack();  
   }
-  render() {
+  render() {  
+   const data = this.props.location.state;
     return (
+      
       <div className="ShowTask">
         <div className="ShowTask1">
-          name :
-{this.state.showObj.name}
+          name :{data.name}
         </div>
         <div className="ShowTask1">
           desc :
@@ -43,7 +44,7 @@ class ShowTask extends Component {
         </div>
         <div className="ShowTask1">
           priority :
-          {this.state.showObj.priority}
+          {data.priority}
         </div>
         <button onClick={this.backToList}>back to list</button>
       </div>

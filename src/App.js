@@ -16,12 +16,15 @@ import Test1 from './login/Test1';
 import MyGroups from './login/MyGroups';
 import SignUp from './login/SignUp';
 import Album from './todo/Album';
+import ToDoPerUser from './todo/ToDoPerUser';
 import Login from './login/Login';
 import ResetPassword from './login/ResetPassword';
 import SignIn from './login/SignIn';
 import Contacts from './login/Contacts';
 import Typography from '@material-ui/core/Typography';
 import Sort from './sort/Sort';
+import Contact from './login/Contact';
+import ToDoList from './todo/ToDoList';
 class App extends Component {
   constructor(props){
     super(props)
@@ -61,7 +64,10 @@ class App extends Component {
           <Route path="/ManageGroup" component={ManageGroup} />
           <Route path="/MyGroups" component={MyGroups} />
           <Route path="/SignIn" component={SignIn} />
-          <Route path="/Contacts" component={Contacts} />
+          <Route path="/Contacts" component={Contacts} />          
+          <Route path="/Contact" component={Contact} />
+          <Route path="/ToDoPerUser" component={ToDoPerUser} />
+          <Route path="/ToDoList" component={ToDoList} />
         </main>
       </Router>
         {/* Footer */}

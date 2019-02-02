@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './Task.css';
+import {withRouter} from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
@@ -35,6 +36,25 @@ class Task extends Component {
     });
   };
 
+  showTask(task) {
+    debugger
+    let path = '../showTask/ShowTask';
+    this.props.history.push({
+      pathname: path,
+      state: task
+    })
+    //this.props.history.push(path);
+  }
+
+  editTask(task) {
+    debugger
+    let path = '../editTask/EditTask';
+    this.props.history.push({
+      pathname:path,
+      state:task
+    });
+  }
+
   render() {
     return (
       <div className="App-header">
@@ -47,14 +67,14 @@ class Task extends Component {
   <ListItemText primary={this.props.value.name} secondary={this.props.value.priority}/>
  
   <ListItemSecondaryAction>
-    <IconButton aria-label="Comments">
-      <CommentIcon onClick={this.props.myShowClick}/>     
+    <IconButton aria-label="Comments" onClick={()=>this.showTask(this.props.value)}>
+      <CommentIcon />     
     </IconButton>
     <IconButton aria-label="Delete">
       <DeleteIcon onClick={this.props.myClick} />
     </IconButton>
-    <IconButton aria-label="Delete">
-    <EditIcon onClick={this.props.myEditClick}/>    
+    <IconButton aria-label="Delete" onClick={()=>this.editTask(this.props.value)}>
+    <EditIcon/>    
     </IconButton>
   </ListItemSecondaryAction>
   </ListItem>
@@ -63,4 +83,4 @@ class Task extends Component {
   }
 }
 
-export default Task;
+export default withRouter(Task);

@@ -13,65 +13,52 @@ class EditTask extends Component {
       editName: '',
       editDesc: '',
       editPriority: '',
-      arr: JSON.parse(localStorage.getItem('objFromLocalStorage'))
+      id: ''
     }
   }
 
   componentWillMount() {
-    this.setState({ editName: this.state.arr.name });
-    this.setState({ editDesc: this.state.arr.desc });
-    this.setState({ editPriority: this.state.arr.priority });
+    this.setState({ editName: this.props.location.state.name });
+    this.setState({ editDesc: this.props.location.state.desc });
+    this.setState({ editPriority: this.props.location.state.priority });
+    this.setState({ id: this.props.location.state._id });
   }
-
-  handleChange(key, event) {
-    let obj = {};
-    obj[key] = event.target.value;
-    //add obj to the constructor
-    if (key === 'editName') {
-      this.setState({ editName: event.target.value })
-    }
-    else {
-      if (key === "editDesc") {
-        this.setState({ editDesc: event.target.value })
-      }
-      else {
-        if (key === "editPriority") {
-          this.setState({ editPriority: event.target.value })
-        }
-      }
-    }
-  }
+  
+  handleChange = prop => event => {
+    this.setState({ [prop]: event.target.value });
+  };
+  
   saveChanges() {
+    debugger
     let obj = {};
-    obj._id = this.state.arr._id;
+    obj._id = this.state.id;
     obj.name = this.state.editName;
     obj.desc = this.state.editDesc;
     obj.priority = this.state.editPriority;
     service.update(obj);
-    this.props.history.push('../todo/Todo');
+    this.props.history.goBack();
   }
   render() {
+    const data = this.props.location.state;
     return (
-
       <div className="editTask1"  >
-
         <div className="editTask2" >
           name :
-        {this.state.editName}
+        {data.name}
           <input value={this.state.editName}
-            onChange={this.handleChange.bind(this, 'editName')}></input>
+           onChange={this.handleChange('editName')}></input>
         </div>
 
         <div className="editTask2">
           desc :
           <input id="desc" value={this.state.editDesc}
-            onChange={this.handleChange.bind(this, 'editDesc')}></input>
+            onChange={this.handleChange('editDesc')}></input>
         </div>
 
         <div className="editTask2">
           priority :
           <input id="priority" value={this.state.editPriority}
-            onChange={this.handleChange.bind(this, 'editPriority')}></input>
+           onChange={this.handleChange('editPriority')}></input>
         </div>
         <button onClick={this.saveChanges}>save</button>
       </div>

@@ -259,15 +259,15 @@ class NewTask extends Component {
     this.setState(obj);   
   };
  
-  handleSubmit(event) {
-    let obj = {};
-    obj.name = this.state.name;
-    obj.desc = this.state.desc;
-    obj.id = this.state.id;
-    obj.priority = this.state.priority;
+handleSubmit(event) {
+  let obj = {};
+  obj.name = this.state.name;
+  obj.desc = this.state.desc;
+  obj.id = this.state.id;
+  obj.priority = this.state.priority;
    this.setState({obj:service.insertItem(obj) });
-    this.props.history.push('../todo/Todo');
-  }
+   this.props.history.push('/ToDoList')
+}
   render() {
     return (
       <div className="wrapp1" >

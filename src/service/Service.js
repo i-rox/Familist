@@ -28,10 +28,8 @@ transporter.sendMail(mailOptions, function(error, info){
 
 class Service extends Component {
   constructor(props) {
-    super(props);
-
+    super(props);   
     this.state = {
-
       list: [
         { name: 'task133 ', _id: "11", desc: "desc of task1", priority: '1' },
         { name: 'task2', _id: "22", desc: "desc of task2", priority: '2' },
@@ -40,6 +38,8 @@ class Service extends Component {
       ]
     };
   }
+
+  
   //oninit react
   setList(l1) {
     this.setState = ({
@@ -52,7 +52,13 @@ class Service extends Component {
     }
     return JSON.parse(localStorage.getItem('tasksList'));
   }
-
+  
+  getUserListByGroup() {
+    if (localStorage.getItem('users') === null) {
+      return
+    }
+    return JSON.parse(localStorage.getItem('users'));
+  }
   getUserById(id)
   {
     let users=JSON.parse(localStorage.getItem('users')); 
@@ -77,14 +83,37 @@ class Service extends Component {
    // let user={username:localStorage.getItem('username'), pass:localStorage.getItem('password')};
     for(let i=0;i<users.length;i++)
     {
-      if(users[i].password==obj.password&&users[i].username==obj.username)
+      if(users[i].password==obj.password)
       {
+        if(users[i].username==obj.username||users[i].email==obj.username)
         alert("this is the user!!!");
         return true;
       }
     }
     alert("not exist:(");  
     return false;
+  }
+
+  
+  createGroup(obj)
+  {
+    let groups=[];
+    if(localStorage.getItem('groups')!=null)
+    {
+      groups=JSON.parse(localStorage.getItem('groups'));
+    }
+    let newGroup={objId:obj.password, groupname:obj.groupname, password:obj.password, description:obj.description};
+    debugger
+    groups.push(newGroup);
+
+    localStorage.setItem('groups', JSON.stringify(groups));
+    alert("check details&/n enter to all groups");  
+  }
+
+  retrieveTasksGroup(groupId)
+  {
+    //rerturn all tasks for specific group
+    debugger
   }
 
   isPasswordValid(password)
@@ -108,7 +137,7 @@ class Service extends Component {
     {
       users=JSON.parse(localStorage.getItem('users'));
     }   
-    let newUser={username:obj.username, password:obj.password,id:1};
+    let newUser={username:obj.username, email:obj.email, password:obj.password,id:obj.password};
     users.push(newUser);
 
     localStorage.setItem('users', JSON.stringify(users));
@@ -125,15 +154,16 @@ class Service extends Component {
       return;
     }  
     let groups=JSON.parse(localStorage.getItem('groups')); 
-    let user=this.getUserById(1);//{username:localStorage.getItem('username'), pass:localStorage.getItem('password')};
-    let myGroup=[];
-    for(let i=0;i<groups.length;i++)
-    {
-      if (groups[i].pass==user.pass&&groups[i].username==user.username) {
-          myGroup.push(groups[i]);
-       }
-    }
-    return myGroup;
+   // let user=this.getUserById(1);//{username:localStorage.getItem('username'), pass:localStorage.getItem('password')};
+  //  let myGroup=[];
+  //  for(let i=0;i<groups.length;i++)
+   // {
+   //   if (groups[i].pass==user.pass&&groups[i].username==user.username) {
+   //       myGroup.push(groups[i]);
+   //    }
+   // }
+  //  return myGroup;
+  return groups;
   }
   insertItem(obj) {
     this.setState({

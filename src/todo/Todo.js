@@ -18,6 +18,7 @@ import Service from '../service/Service';
 import EditTask from '../editTask/EditTask';
 import ShowTask from '../showTask/ShowTask';
 import Sort from '../sort/Sort';
+import ToDoList from './ToDoList';
 const service = new Service();
 class Todo extends Component {
 
@@ -40,35 +41,22 @@ class Todo extends Component {
   createNewTask() {
     let path = '../newTask/NewTask';
     this.props.history.push(path);
+    ToDoList.props.history.push(path);
   }
-
-  editTask(key) {
-    debugger
-    localStorage.setItem('objFromLocalStorage', JSON.stringify(key));
-    let path = '../editTask/EditTask';
-    this.props.history.push(path);
-  }
-
-  ShowTask(obj) {
-    localStorage.setItem('objFromLocalStorage', JSON.stringify(obj));
-    let path = '../showTask/ShowTask';
-    this.props.history.push(path);
-  }
-
+  
   markTaskAsDone(id) {
     let arr;
     arr = this.setState({ arr: service.markTaskAsDone(id) });
   }
 
-  renderTask(key) {
+  renderTask(task) {
     debugger
-    if (this.state.priorityFilter.length === 0 || this.filters(key) === 1) {
+    if (this.state.priorityFilter.length === 0 || this.filters(task) === 1) {
       return (
         <div>
-          <Task value={key}
-            myClick={() => { this.markTaskAsDone(key._id) }}
-            myEditClick={() => { this.editTask(key) }}
-            myShowClick={() => { this.ShowTask(key) }} />
+          <Task value={task}
+            myClick={() => { this.markTaskAsDone(task._id)}}
+           />
         </div>
       );
     }
@@ -157,18 +145,15 @@ renderSort(){
   );
 }
   render() {
-    // <EditTask parentMethod={this.someMethod}></EditTask>
     return (
-           <div >
-           <h3>TODO list</h3>
-         <List >
+      <div >
+       
+        <List >
         {this.state.arr.map(item =>
           this.renderTask(item))
         }
-
-        <button onClick={this.createNewTask}>new</button>
-
-        <label>
+       {/*   */}
+        {/* <label>
           priority 1 :
           <input name="prt1" value="1" type="checkbox" onChange={this.checkboxPriority} />
         </label>
@@ -178,9 +163,9 @@ renderSort(){
           <input name="prt2" value="2" type="checkbox" onChange={this.checkboxPriority} />
         </label>
         <br />
-        {this.renderSort()}
+        {this.renderSort()} */}
         
-          </List >
+        </List >
       </div>
     );
   }

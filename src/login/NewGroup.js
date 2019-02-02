@@ -1,58 +1,52 @@
 import React, { Component } from 'react';
 //import './NewGroup.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import './Login.css';
+import Input from '@material-ui/core/Input';
+import FormControl from '@material-ui/core/FormControl';
+import Service from '../service/Service'
 
-class Input extends React.Component {
-  render() {
-    return <div className='Input'>
-              <input type={ this.props.type } name={ this.props.name } placeholder={ this.props.placeholder } required autocomplete='false'/>
-              <label for={ this.props.name } ></label>
-           </div>
-  }
+const service = new Service();
 
-}
 class NewGroup extends Component {
     
   constructor(props) {
-    super(props);
-    this.state = {isToggleOn: true};
-
-    // This binding is necessary to make `this` work in the callback
-    this.handleClick = this.handleClick.bind(this);
-    this.signIn = this.signIn.bind(this);
+    super(props)
+    this.state = {
+      groupname: '',
+      password:'',
+      description:''      
+    }
   }
 
-  handleClick() {
-    this.setState(prevState => ({
-      isToggleOn: !prevState.isToggleOn
-    }));
+  handleSubmit(event){
+    let groupDetails = {};
+    groupDetails.groupname = this.state.groupname;
+    groupDetails.password = this.state.password;
+    groupDetails.description = this.state.description;
+    service.createGroup(groupDetails);  
   }
 
-  signIn() {
-    let groups=[];
-    if(localStorage.getItem('groups')!=null)
-    {
-      groups=JSON.parse(localStorage.getItem('groups'));
-    }   
-    let newgroup={username:localStorage.getItem('username'), pass:localStorage.getItem('password'),name:'group'};
-    groups.push(newgroup);
+  handleChange = prop => event => {
+    this.setState({ [prop]: event.target.value });
+  };
 
-    localStorage.setItem('groups', JSON.stringify(groups));
-    alert("check details&/n enter to all groups");
-    this.setState({showPopup:false})
-  }
   render() {
     return (      
       <div className="App-header">     
-        <div className='Login'>       
+        <div className='main'>       
           <h3>New Group</h3>
-          <form onSubmit={this.signIn}>
-            <Input type='text' name='name' placeholder='group name' />
-            <Input type='email' name='email' placeholder='email' />
-            <Input type='password' name='password' placeholder='password' />
+          <form onSubmit={this.handleSubmit.bind(this)} className='form'>
+            <FormControl margin="normal" required fullWidth >
+              <Input type='text' name='groupname' placeholder='group name' onChange={this.handleChange('groupname')}/>
+            </FormControl> 
+            <FormControl margin="normal" required fullWidth>
+              <Input type='password' name='password' placeholder='password' onChange={this.handleChange('password')}/>
+            </FormControl>
+             <FormControl margin="normal" fullWidth>
+              <Input type='text' name='description' placeholder='description' onChange={this.handleChange('description')}/>  
+            </FormControl>         
             <button>Create</button>
           </form>
-          <a href="./ResetPassword">forgot password?</a>
         </div>
       </div>       
     );

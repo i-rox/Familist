@@ -52,7 +52,7 @@ class Login extends Component {
         </Typography>
         <form  onSubmit={this.handleSubmit.bind(this)} className='form'>
           <FormControl margin="normal" required fullWidth>
-            <InputLabel htmlFor="email">Email Address</InputLabel>
+            <InputLabel htmlFor="email">Email Address (or username)</InputLabel>
             <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange('username')}/>
           </FormControl>
           <FormControl margin="normal" required fullWidth>

@@ -57,6 +57,7 @@ class SignUp extends Component {
     super(props)
     this.state = {
       username: '',
+      email:'',
       password:''
     }
   }
@@ -64,6 +65,7 @@ class SignUp extends Component {
   handleSubmit(event){
     let loginDetails = {};
     loginDetails.username = this.state.username;
+    loginDetails.email = this.state.email;
     loginDetails.password = this.state.password;
     if(service.signUp(loginDetails))
     {
@@ -87,9 +89,13 @@ class SignUp extends Component {
           Sign up
         </Typography>
         <form  onSubmit={this.handleSubmit.bind(this)} className='form'>
+         <FormControl margin="normal" required fullWidth>
+            <InputLabel htmlFor="username">Name</InputLabel>
+            <Input id="username" name="username" autoComplete="username" autoFocus onChange={this.handleChange('username')}/>
+          </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="email">Email Address</InputLabel>
-            <Input id="email" name="email" autoComplete="email" autoFocus onChange={this.handleChange('username')}/>
+            <Input id="email" name="email" autoComplete="email" onChange={this.handleChange('email')}/>
           </FormControl>
           <FormControl margin="normal" required fullWidth>
             <InputLabel htmlFor="password">Password</InputLabel>
