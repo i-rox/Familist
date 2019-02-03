@@ -18,12 +18,13 @@
   }
   .cardGrid{
     padding:8px; 
-  }
+  }/* 
   .card{
-    height:100%;
+    height:140px;/* 
     display:flex;
     flex-Direction:column;
-  }
+  }  */
+  
   .cardMedia{
     padding-Top: 56.25%;
   }

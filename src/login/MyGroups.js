@@ -1,24 +1,14 @@
 import React, { Component } from 'react';
 import './MyGroups'
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemText from '@material-ui/core/ListItemText';
-import ListItemAvatar from '@material-ui/core/ListItemAvatar';
-import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import Service from '../service/Service';
 import Button from '@material-ui/core/Button';
-import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import AppBar from '@material-ui/core/AppBar';
-import CameraIcon from '@material-ui/icons/PhotoCamera';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
-import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
-import Toolbar from '@material-ui/core/Toolbar';
 
 
 const service = new Service();
@@ -36,6 +26,16 @@ class MyGroups extends Component {
    this.props.history.push('../ToDoList');
   };
 
+  retrieveGroupMembers()
+  {
+     this.props.history.push('/contactList');
+  }
+
+  createNewGroup()
+  {
+    this.props.history.push('/NewGroup');
+  }
+
   render() {
     return (      
       <div className="App-header">              
@@ -43,7 +43,7 @@ class MyGroups extends Component {
       <div className={classNames("layout", "cardGrid")}>
         <Grid container spacing={40}>
           {service.returnGroups().map(group => (
-          <Grid item key={group.objId} sm={6} md={4} lg={3}>
+          <Grid item key={group.objId} sm={6} md={4} lg={3} className="cardWrap">
             <Card className="card">
               <CardMedia
                 className="cardMedia"
@@ -64,10 +64,22 @@ class MyGroups extends Component {
               <Button size="small" color="primary">
                 Edit
               </Button>
+              <Button size="small" color="primary" onClick={()=>this.retrieveGroupMembers(group.objId)}>
+                Members
+              </Button>
               </CardActions>
               </Card>
             </Grid>
             ))}
+            <Grid item sm={6} md={4} lg={3} >
+            <Card className="card" style={{ height: '140px'}}>                         
+              <CardActions>
+              <Button size="small" color="primary" onClick={this.createNewGroup.bind(this)}> 
+                Create New
+              </Button>
+              </CardActions>
+              </Card>
+            </Grid>
           </Grid>
         </div>
     </div>       

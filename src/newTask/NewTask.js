@@ -1,75 +1,29 @@
-/* /* import React, { Component } from 'react';
+import React, { Component } from 'react';
 import './NewTask.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-
-class NewTask extends Component {
-  //constructor(props){
-    //super(props);
-    //this.state={
-     // arr2:{name:'',_id:''},
-   // }
- // }
-  //<button onClick={this.prepareNewTask()}>create</button>
-  //onClick={()=>{this.CreateTask(this.state.arr2)} }
-  render() {
-    return (
-     <div className="newTask1">
-      <div className="newTask2">
-      gfh
-      <input id="name" placeholder="name" ></input>
-      </div>
-      <div className="newTask2">
-      ddddfd
-      <input id="id" placeholder="id"></input>
-      </div>
-      <div className="newTask2"></div>
-      <div className="newTask2"></div>
-      <div className="newTask2"></div>
-      <div></div>
-  <button >create</button>
-      
-     </div>
-    );
-  }
-}
-
-export default NewTask;
- */
-/*import React from 'react';
-import classNames from 'classnames';
-import PropTypes from 'prop-types';
-import { withStyles } from '@material-ui/core/styles';
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
+import Service from "../service/Service"
 import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
 import Button from '@material-ui/core/Button';
-import Visibility from '@material-ui/icons/Visibility';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
-const styles = theme => ({
-  root: {
-    display: 'flex',
-    flexWrap: 'wrap',
+const service = new Service();
+
+const currencies = [
+  {
+    value: 'USD',
+    label: '$',
   },
-  margin: {
-    margin: theme.spacing.unit,
+  {
+    value: 'EUR',
+    label: '€',
   },
-  withoutLabel: {
-    marginTop: theme.spacing.unit * 3,
+  {
+    value: 'BTC',
+    label: '฿',
   },
-  textField: {
-    flexBasis: 200,
+  {
+    value: 'JPY',
+    label: '¥',
   },
-  button: {
-  
-  },
-});
+];
 
 const priorities = [
   {
@@ -101,156 +55,15 @@ const contacts = [
   },
 ];
 
-
-class NewTask extends React.Component {
-  state = {
-    name: '',
-    priority: '',
-    assignedTo:''  
-  };
-
-  handleChange = prop => event => {
-    this.setState({ [prop]: event.target.value });
-  };
- 
-  render() {
-    const { classes } = this.props;
-
-    return (
-      <div className={classes.root}>
-        <TextField
-          label="Task Name"
-          id="simple-start-adornment"
-          className={classNames(classes.margin, classes.textField)} 
-          variant="outlined"       
-        />
-          <TextField
-          id="outlined-number"
-          label="todo"
-          value={this.state.age}
-          onChange={this.handleChange('age')}
-          type="number"
-          className={classNames(classes.margin, classes.textField)}
-          InputLabelProps={{
-            shrink: true,
-          }}
-          margin="normal"
-          variant="outlined"
-        />
-          <TextField
-          select
-          label="Priority"
-          className={classNames(classes.margin, classes.textField)}
-          value={this.state.priority}
-          onChange={this.handleChange('priority')}
-          variant="outlined"
-          >
-          {priorities.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-          
-        </TextField>
-        <TextField
-          id="outlined-full-width"
-          label="Description"
-          style={{ margin: 8 }}
-          placeholder="shopping for Shabbat"
-          helperText="Full width!"
-          fullWidth
-          margin="normal"
-          variant="outlined"
-          InputLabelProps={{
-            shrink: true,
-          }}
-        />
-       
-        <TextField              
-          label={<LocationOnIcon />}
-          id="simple-start-adornment"
-          className={classNames(classes.margin, classes.textField)} 
-          variant="outlined"       
-        >
-        </TextField>
-         <TextField
-          select
-          label="Assigned To"
-          className={classNames(classes.margin, classes.textField)}
-          value={this.state.assignedTo}
-          onChange={this.handleChange('assignedTo')}
-          variant="outlined"
-          >
-          {contacts.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-          
-        </TextField>
-        <TextField
-          select
-          label="Priority"
-          className={classNames(classes.margin, classes.textField)}
-          value={this.state.priority}
-          onChange={this.handleChange('priority')}
-          variant="outlined"
-          >
-          {priorities.map(option => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.label}
-            </MenuItem>
-          ))}
-          
-        </TextField>
-        <Button
-         className={classNames(classes.margin, classes.button)} variant="outlined" className={classes.button}>create</Button>
-        <Button className={classNames(classes.margin, classes.button)}  variant="outlined" className={classes.button}>
-        save in repository
-      </Button>
-      </div>
-    );
-  }
-}
-
-NewTask.propTypes = {
-  classes: PropTypes.object.isRequired,
-};
-
-export default withStyles(styles)(NewTask); */
-
-import React, { Component } from 'react';
-import './NewTask.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Service from "../service/Service"
-import IconButton from '@material-ui/core/IconButton';
-import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import InputAdornment from '@material-ui/core/InputAdornment';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import FormControl from '@material-ui/core/FormControl';
-import TextField from '@material-ui/core/TextField';
-import MenuItem from '@material-ui/core/MenuItem';
-import Button from '@material-ui/core/Button';
-import Visibility from '@material-ui/icons/Visibility';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
-import VisibilityOff from '@material-ui/icons/VisibilityOff';
-
-const service = new Service();
-
 class NewTask extends Component {
   constructor(props) {
     super(props)
     this.state = {
       name: '',
-      desc: '',
+      description: '',
       _id:'',
       priority:''
     }
-  }
-  //onInit
-  componentWillMount() {
-    this.setState({ arr: service.getList() });
   }
 
   handleChange = prop => event => {
@@ -262,51 +75,120 @@ class NewTask extends Component {
 handleSubmit(event) {
   let obj = {};
   obj.name = this.state.name;
-  obj.desc = this.state.desc;
-  obj.id = this.state.id;
+  obj.description = this.state.description;
+  obj.id = this.state.priority;
   obj.priority = this.state.priority;
    this.setState({obj:service.insertItem(obj) });
    this.props.history.push('/ToDoList')
 }
   render() {
     return (
-      <div className="wrapp1" >
-        <form onSubmit={this.handleSubmit.bind(this)}>
+      <form className="container"  autoComplete="off" onSubmit={this.handleSubmit.bind(this)}>
         <TextField
-          label="Task Name"
-          id="simple-start-adornment"
-          className=''
-          variant="outlined"       
+          required
+          id="filled-name"
+          label="Name"
+          className="textField"
+          value={this.state.name}
+          onChange={this.handleChange('name')}
+          margin="normal"
+          variant="filled"
         />
-          <TextField
-          id="outlined-number"
-          label="todo"
+         <TextField
+          id="filled-full-width"
+          label="Description"
+          value={this.state.description}
+          helperText="Full width!"
+          fullWidth
+          margin="normal"
+          variant="filled" 
+          onChange={this.handleChange('description')}
+         
+        />
+        <TextField
+          id="filled-number"
+          label="Number"
           value={this.state.age}
           onChange={this.handleChange('priority')}
           type="number"
-          className=''
-          InputLabelProps={{
-            shrink: true,
-          }}
+          className="textField"
           margin="normal"
-          variant="outlined"
+          variant="filled"
         />
-          <div className="wrapp2">
-          <input placeholder="id" value={this.state.id}
-            onChange={this.handleChange('id')}></input>
-            {this.state.id}
-          </div>
-          <div className="wrapp2">
-            <input placeholder="name" value={this.state.name}
-            onChange={this.handleChange('name')}></input>
-            {this.state.name}
-          </div>
-          <div className="wrapp2">
-            <input placeholder="desc" onChange={this.handleChange('desc')} ></input>
-          </div>         
-          <input type="submit" value="Submit" />
-        </form>
-      </div>
+        <TextField
+          id="filled-select-currency-native"
+          select
+          label="Native select"
+          className="textField"
+          value={this.state.currency}
+          onChange={this.handleChange('currency')}
+          SelectProps={{
+            native: true,
+            MenuProps: {
+              className: "menu"
+            },
+          }}
+          helperText="Please select your currency"
+          margin="normal"
+          variant="filled"
+        >
+          {currencies.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
+        <TextField
+          id="filled-select-currency-native"
+          select
+          label="assigned to"
+          className="textField"
+          value={this.state.currency}
+          onChange={this.handleChange('currency')}
+          SelectProps={{
+            native: true,
+            MenuProps: {
+              className: "menu"
+            },
+          }}
+          helperText="Please select your currency"
+          margin="normal"
+          variant="filled"
+        >
+          {contacts.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
+         <TextField
+          id="filled-select-currency-native"
+          select
+          label="priority"
+          className="textField"
+          value={this.state.currency}
+          onChange={this.handleChange('currency')}
+          SelectProps={{
+            native: true,
+            MenuProps: {
+              className: "menu"
+            },
+          }}
+          helperText="Please select your currency"
+          margin="normal"
+          variant="filled"
+        >
+          {priorities.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
+      <br/>
+       <Button type="submit" variant="contained" color="primary" >
+       create
+     </Button>
+      </form>
     );
   }
 }

@@ -29,7 +29,7 @@ class ToDoPerUser extends Component {
     return(
       <div>
     <ListItem button  onClick={() => this.collapseTasks(contact.id)}>
-      <Contact username={contact.username}></Contact>      
+      <Contact username={contact.username} id={contact.id}></Contact>      
      </ListItem>
       <Collapse in={this.state.collapse[contact.id]} timeout="auto" unmountOnExit style={{paddingLeft: '70px'}}>
       <Todo></Todo>

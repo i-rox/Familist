@@ -54,6 +54,7 @@ class Service extends Component {
   }
   
   getUserListByGroup() {
+    debugger
     if (localStorage.getItem('users') === null) {
       return
     }

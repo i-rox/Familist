@@ -36,7 +36,7 @@ class Task extends Component {
     });
   };
 
-  showTask(task) {
+  editTask(task) {
     debugger
     let path = '../showTask/ShowTask';
     this.props.history.push({
@@ -44,7 +44,7 @@ class Task extends Component {
       state: task
     })
     //this.props.history.push(path);
-  }
+  }/* 
 
   editTask(task) {
     debugger
@@ -53,30 +53,27 @@ class Task extends Component {
       pathname:path,
       state:task
     });
-  }
+  } */
 
   render() {
     return (
       <div className="App-header">
-      <ListItem key={1} role={undefined} dense button onClick={this.handleToggle(1)}>
-       <Checkbox
-    checked={this.state.checked.indexOf(1) !== -1}
-    tabIndex={-1}
-    disableRipple
-  />
+      <ListItem key={1} role={undefined} dense button>
+       
   <ListItemText primary={this.props.value.name} secondary={this.props.value.priority}/>
  
-  <ListItemSecondaryAction>
-    <IconButton aria-label="Comments" onClick={()=>this.showTask(this.props.value)}>
-      <CommentIcon />     
-    </IconButton>
+  
     <IconButton aria-label="Delete">
       <DeleteIcon onClick={this.props.myClick} />
     </IconButton>
     <IconButton aria-label="Delete" onClick={()=>this.editTask(this.props.value)}>
     <EditIcon/>    
     </IconButton>
-  </ListItemSecondaryAction>
+  <Checkbox onClick={this.handleToggle(1)}
+    checked={this.state.checked.indexOf(1) !== -1}
+    tabIndex={-1}
+    disableRipple
+  />
   </ListItem>
   </div>
     );

@@ -12,7 +12,7 @@ import ShowTask from './showTask/ShowTask';
 import NewGroup from './login/NewGroup';
 import ManageGroup from './login/ManageGroup';
 import Test from './login/Test';
-import Test1 from './login/Test1';
+import ContactList from './login/ContactList';
 import MyGroups from './login/MyGroups';
 import SignUp from './login/SignUp';
 import Album from './todo/Album';
@@ -60,7 +60,7 @@ class App extends Component {
           <Route path="/NewGroup" component={NewGroup} /> 
           <Route path="/Test" component={Test} /> 
           <Route path="/Login" component={Login} /> 
-          <Route path="/Test1" component={Test1} /> 
+          <Route path="/ContactList" component={ContactList} /> 
           <Route path="/ManageGroup" component={ManageGroup} />
           <Route path="/MyGroups" component={MyGroups} />
           <Route path="/SignIn" component={SignIn} />

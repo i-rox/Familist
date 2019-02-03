@@ -1,53 +1,214 @@
 import React, { Component } from 'react';
 import './ShowTask.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 import Service from '../service/Service';
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
+
+const currencies = [
+  {
+    value: 'USD',
+    label: '$',
+  },
+  {
+    value: 'EUR',
+    label: '€',
+  },
+  {
+    value: 'BTC',
+    label: '฿',
+  },
+  {
+    value: 'JPY',
+    label: '¥',
+  },
+];
+
+const priorities = [
+  {
+    value: '1',
+    label: 'high',
+  },
+  {
+    value: '2',
+    label: 'medium',
+  },
+  {
+    value: '3',
+    label: 'low',
+  },
+];
+
+const contacts = [
+  {
+    value: '1',
+    label: 'Yair',
+  },
+  {
+    value: '2',
+    label: 'Nechama',
+  },
+  {
+    value: '3',
+    label: 'Shira',
+  },
+];
 
 const service = new Service();
+
 class ShowTask extends Component {
   constructor(props) {
     super(props);
     this.backToList = this.backToList.bind(this);
     this.state = {
-      id1: '',
-      showObj: ''
+      id: '',
+      name: '',
+      description: '',
+      priority: ''
     }
   }
 
-  /* componentWillMount() {
-    debugger
-    // alert({this.props.location.state.id});
-    // this.setState({id1:this.props.location.state.id});
-    // alert(this.props.id1);
-    this.setState({ showObj: JSON.parse(localStorage.getItem('objFromLocalStorage')) });
-    //this.setState({ id1: JSON.parse(localStorage.getItem('IdForEdit')) });
-    //this.setState({arr:)
-    debugger
-  } */
-  // {this.state.id1}
+  componentWillMount() {
+    this.setState({ name: this.props.location.state.name });
+    this.setState({ description: this.props.location.state.description });
+    this.setState({ priority: this.props.location.state.priority });
+    this.setState({ id: this.props.location.state._id });
+  }
+
   backToList(){
     debugger
     this.props.history.goBack();  
   }
-  render() {  
-   const data = this.props.location.state;
+  
+  
+  handleChange = prop => event => {
+    let obj = {};
+    obj[prop]=event.target.value;
+    this.setState(obj);   
+  };
+
+  
+  saveChanges() {
+    debugger
+    let obj = {};
+    obj._id = this.state.priority;
+    obj.name = this.state.name;
+    obj.description = this.state.description;
+    obj.priority = this.state.priority;
+    service.update(obj);
+    this.props.history.goBack();
+  }
+  render() {
     return (
-      
-      <div className="ShowTask">
-        <div className="ShowTask1">
-          name :{data.name}
-        </div>
-        <div className="ShowTask1">
-          desc :
-{this.state.showObj.desc}
-        </div>
-        <div className="ShowTask1">
-          priority :
-          {data.priority}
-        </div>
-        <button onClick={this.backToList}>back to list</button>
-      </div>
+      <form className="container"  autoComplete="off" >
+        <TextField
+          required
+          id="filled-name"
+          label="Name"
+          className="textField"
+          value={this.state.name}
+          onChange={this.handleChange('name')}
+          margin="normal"
+          variant="filled"
+        />
+         <TextField
+          id="filled-full-width"
+          label="Description"
+          value={this.state.description}
+          helperText="Full width!"
+          fullWidth
+          margin="normal"
+          variant="filled" 
+          onChange={this.handleChange('description')}
+         
+        />
+        <TextField
+          id="filled-number"
+          label="Number"
+          value={this.state.priority}
+          onChange={this.handleChange('priority')}
+          type="number"
+          className="textField"
+          margin="normal"
+          variant="filled"
+        />
+        <TextField
+          id="filled-select-currency-native"
+          select
+          label="Native select"
+          className="textField"
+          value={this.state.currency}
+          onChange={this.handleChange('currency')}
+          SelectProps={{
+            native: true,
+            MenuProps: {
+              className: "menu"
+            },
+          }}
+          helperText="Please select your currency"
+          margin="normal"
+          variant="filled"
+        >
+          {currencies.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
+        <TextField
+          id="filled-select-currency-native"
+          select
+          label="assigned to"
+          className="textField"
+          value={this.state.currency}
+          onChange={this.handleChange('currency')}
+          SelectProps={{
+            native: true,
+            MenuProps: {
+              className: "menu"
+            },
+          }}
+          helperText="Please select your currency"
+          margin="normal"
+          variant="filled"
+        >
+          {contacts.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
+         <TextField
+          id="filled-select-currency-native"
+          select
+          label="priority"
+          className="textField"
+          value={this.state.currency}
+          onChange={this.handleChange('currency')}
+          SelectProps={{
+            native: true,
+            MenuProps: {
+              className: "menu"
+            },
+          }}
+          helperText="Please select your currency"
+          margin="normal"
+          variant="filled"
+        >
+          {priorities.map(option => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </TextField>
+      <br/>
+       <Button variant="contained" color="primary" onClick={this.saveChanges.bind(this)}>
+       save
+     </Button>
+      <Button variant="contained" color="primary" onClick={this.backToList}>
+       back
+     </Button>
+      </form>
     );
   }
 }

@@ -23,7 +23,8 @@ class NewGroup extends Component {
     groupDetails.groupname = this.state.groupname;
     groupDetails.password = this.state.password;
     groupDetails.description = this.state.description;
-    service.createGroup(groupDetails);  
+    service.createGroup(groupDetails); 
+    this.props.history.push('/MyGroups');
   }
 
   handleChange = prop => event => {

@@ -1,59 +1,5 @@
  import React, { Component } from 'react';
 import './Menu.css';
-/*import 'bootstrap/dist/css/bootstrap.css';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import 'bootstrap/dist/css/bootstrap.css';
-import {  NavItem, Navbar, NavLink, Nav } from 'reactstrap';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-
-class Menu extends Component {
-  render() {
-    return (   
-       
-        <AppBar position="static">
-        
-          <Toolbar> <Link to="/Login">Login</Link>
-          </Toolbar>
-   
-            <Toolbar>
-              <Link to="/ManageGroup">ManageGroup</Link>
-            </Toolbar>
-         
-              <Link to="/InsertTask">InsertTask</Link>
-            </Toolbar>
-            <Toolbar>
-              <Link to="/Try3">try3</Link>
-            </Toolbar>
-          <Toolbar>
-              <Link to="/Try1">try1</Link>
-            </Toolbar>
-            <Toolbar>
-              <Link to="/Home">Home</Link>
-            </Toolbar>
-            <Toolbar>
-              <Link to="/Todo">Todo</Link>
-            </Toolbar>
-            <Toolbar>
-              <Link to="/About">About</Link>
-            </Toolbar>
-            <Toolbar>
-              <Link to="/details">Details</Link>
-            </Toolbar>
-          
-          <hr />
-
-        </AppBar>
-        
-      
-    );
-  }
-}
-
-
-export default Menu;
- */
-
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
@@ -63,9 +9,6 @@ import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import Switch from '@material-ui/core/Switch';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import Button from '@material-ui/core/Button';
@@ -123,7 +66,7 @@ class MenuBar extends Component {
     const open2 = Boolean(anchorE2);
 
     return (
-      <div className={classes.root}>
+      <div className="header">
         <AppBar position="static">
           <Toolbar>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
